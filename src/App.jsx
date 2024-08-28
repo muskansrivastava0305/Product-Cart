@@ -76,7 +76,7 @@ const dispatch = useDispatch()
       
 
       <div className='flex flex-col w-full m-5  '>
-        <div className=' border border-gray-200 shadow-lg text-red-900 font-bold text-2xl'>
+        <div className=' border border-gray-200 shadow-lg text-red-900 font-bold text-2xl hover:cursor-pointer bg-blue-200 '>
           <h1 className=' text-center m-5'>Add to cart</h1>
         </div>
           <div >
