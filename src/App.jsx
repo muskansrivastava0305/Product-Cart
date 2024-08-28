@@ -1,7 +1,7 @@
 import { connect, useDispatch, useSelector } from 'react-redux';
 import './App.css'
 import Recentorder from './component/Recentorder'
-import { addToCart } from './cartSlice';
+import { addToCart , incrementQuant, decrementQuant } from './cartSlice';
 
 
 
@@ -15,8 +15,6 @@ const dispatch = useDispatch()
       image: "shoes.png",
       name: "Shoes",
       prize: "Rs. 700",
-      cart: "Add Cart"
-
     },
 
     {
@@ -25,8 +23,6 @@ const dispatch = useDispatch()
       image: "Book-set.png",
       name: "Books",
       prize: "Rs. 345",
-      cart: "Add Cart"
-
     },
 
     {
@@ -34,22 +30,27 @@ const dispatch = useDispatch()
       image: "spex.png",
       name: "Spex",
       prize: "Rs. 475",
-      cart: "Add Cart"
-
     },
     {
       id:4,
       image: "study-table.png",
       name: "Study Table",
       prize: "Rs. 350",
-      cart: "Add Cart"
-
     }
   ];
 
+  // const handleAddToCart = (product) => {
+  //    dispatch(addToCart(product))
+  // };
+
   const handleAddToCart = (product) => {
-     dispatch(addToCart(product))
+      dispatch(addToCart({ ...product, quantity: 1 }));
+ 
   };
+
+  
+  
+
 
   return (
     <div className=' '>
@@ -67,21 +68,10 @@ const dispatch = useDispatch()
           image={item.image}
           name={item.name}
           prize={item.prize}
-          cart={item.cart} 
+          id={item.id}
           onClick={() => handleAddToCart(item)}/>
         ))}
-        {/* <div className=' flex  hover:bg-slate-300 cursor-pointer w-full'>
-        <div className=' w-36 '>
-          <img src=' shoes.png'/>
-        </div>
-        <div className=' felx flex-col p-3 '>
-          <h1 className=' font-semibold text-xl '>Shoes</h1>
-          <p>Rs. 700</p>
-        </div>
-        </div>
-        <div className=' bg-red-600 text-white button rounded-lg h-8 w-20 text-center  hover:bg-red-400 hover:text-black'>
-         <button>Add Cart</button>
-        </div> */}
+        
       </div>
       
 
@@ -92,16 +82,16 @@ const dispatch = useDispatch()
           <div >
           <ul >
           {cart?.map((product, index) => (
+            <li key={index} >
             <Recentorder
-           // <li className=' flex flex-row justify-between border border-gray-200 shadow-lg m-2 h-32' key={index}>
-              key={index} 
+              key={product.id} 
               image={product.image}
               name={product.name}
               prize={product.prize}
-              />
-             // </li> 
-            
-              
+              id={product.id}
+              />    
+          
+            </li>
           ))}
         </ul>
         </div>
